@@ -30,9 +30,8 @@ def toJson(str):
 filename = 'cookie.txt'
 cookie = cookielib.MozillaCookieJar(filename)
 handler = urllib2.HTTPCookieProcessor(cookie)
-# request = urllib2.Request('http://www.baidu.com')
-# response = urllib2.urlopen(request)
 opener = urllib2.build_opener(handler)
+#if not os.path.exists('cookiejar'):
 #如果没有cookie就post一下获取cookie,否则直接用本地文件中保存好的cookie
 response = opener.open('https://cas.sysu.edu.cn/cas/login?service=http://ecampus.sysu.edu.cn/zsuyy/login.jsp')
 soup = toJson(response.read())
@@ -42,6 +41,9 @@ result = opener.open(postUrl,payload)
 cookie.save(ignore_discard=True, ignore_expires=True)
 stdConfirmInfoUrl = 'http://ecampus.sysu.edu.cn/zsuyy/yanyuan/xj/studentmng.do?method=stdConfirmInfoPage'
 #学生信息页面抓取
+#else:
+#   print "cookie exists,restore"
+#   cookie.load(ignore_discard=True)
 stdConfirmInfo = opener.open(stdConfirmInfoUrl)
 f = open('12.html','w')
 f.write(stdConfirmInfo.read())
