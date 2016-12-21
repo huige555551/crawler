@@ -1,0 +1,2194 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<base href="http://ecampus.sysu.edu.cn/zsuyy/application/yanyuan/StdMng/studentmng/student_confirm.jsp" />
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+	
+	
+	<link href="/zsuyy/css/style.css" rel="stylesheet" type="text/css" />
+	<script language="JavaScript" src="/zsuyy/script/sel_style.js"></script><style>.coolGrid{behavior: url(\zsuyy\script/coolGrid.htc);sortNoneImageUrl: \zsuyy\image/blank.gif;sortUpImageUrl: \zsuyy\image/sortUp.gif;sortDownImageUrl: \zsuyy\image/sortDown.gif;posUpImageUrl: \zsuyy\image/uparrow.gif;posDownImageUrl: \zsuyy\image/downarrow.gif;table-layout: fixed;position: relative;margin: 0px;width: 100%;highlightBackgroundColor: #eeeeee;highlightBorderColor: #cccccc;cursor: default;}</style><script>		if(top.document.getElementById("displaySelectLayer")) 			top.document.getElementById("displaySelectLayer").style.display="none";	</script></head><body onload="loadPage()"><iframe id="displaySelectLayer" author="heerit" frameborder="0" style="position: absolute; width: 160px; height: 0px; z-index: 9998; display: none;" scrolling="yes"></iframe>
+<div id="winpop" style="z-index:1000;display:none;width:200px; height:0px; position:absolute; border:1px solid #999999; margin:0; padding:1px; overflow:hidden;display:none; background:#FFFFFF; font-size:12px;">    <div style="width:100%; height:20px; line-height:20px; background:#FFCC00; font-weight:bold; text-align:center; font-size:12px;">系统提示！<span style="position:absolute; right:4px; top:-1px; color:#FFFFFF; cursor:pointer" onclick="hid_pop()" title="关闭">X</span></div>    <div style="width:100%; margin:0; height:80px; font-size:12px; color:#000000; text-align:center"><img style="float:left;" src="/zsuyy/image/pic_warn.gif" border="0" align="middle" />您已经超过20分钟没有和服务器进行交互了。为避免您的输入结果丢失，请在<b>10分钟</b>内保存或提交输入内容。<div></div></div></div>
+	<script language="JavaScript" src="/zsuyy/script/general.js"></script>
+	<script language="JavaScript" src="/zsuyy/script/date.js"></script><iframe id="meizzDateLayer" name="meizzDateLayer" author="wayx" frameborder="0" style="position: absolute; width: 145px; height: 225px; z-index: 9998; display: none;" scrolling="no"></iframe>
+
+	<script language="JavaScript" src="/zsuyy/script/Validate_batch.js"></script>
+
+	<script language="JavaScript" src="/zsuyy/application/yanyuan/public/js/public.js"></script>
+	<script language="JavaScript" src="/zsuyy/application/yanyuan/public/js/fc_util.js"></script>
+	<script language="JavaScript" src="/zsuyy/application/yanyuan/public/js/controlselect.js"></script>
+
+
+
+<script src="/zsuyy/script/select_panel.js"></script><style type="text/css">.tab_selected_panel1 {background-image:url(/zsuyy/image/skin/0/tab_01.gif)}.tab_selected_panel2{background-image:url(/zsuyy/image/skin/0/tab_02.gif)}.tab_selected_panel3{background-image:url(/zsuyy/image/skin/0/tab_03.gif)}</style>
+<script src="/zsuyy/application/yanyuan/StdMng/js/checkdate.js"></script>
+<script src="/zsuyy/application/yanyuan/StdMng/studentmng/validator.js"></script>
+ <script>
+
+	function onSelectYjfx(objImg){
+		getSelOptions(objImg, document.all("studentprimeinfo.yjfx"), document.all("studentprimeinfo.yjfxm"),
+		"table=yxzy&amp;src=YXS.ZY.PYFAYJFX&amp;yxsid="+document.all("studentprimeinfo.xsId").value+"&amp;zyid="+ document.all("studentprimeinfo.zyId").value,null,null);
+	}
+
+	function onSelectSs(objImg){
+		getSelOptions(objImg, document.all("studentprimeinfo.jgs"), document.all.unused,
+		"table=yymisc&amp;src=SS");
+	}
+	function onSelectHkSs(objImg){
+		getSelOptions(objImg, document.all("studentprimeinfo.mqhkszss"), document.all.unused,
+		"table=yymisc&amp;src=SS");
+	}
+	function onSelectSx(objImg){
+		getSelOptions(objImg, document.all("studentprimeinfo.jgsx"), document.all.unused,
+		"table=yymisc&amp;src=SS.sx&amp;ssmc="+escape(document.all("studentprimeinfo.jgs").value));
+	}
+	function onSelectCommonSs(objImg,name_obj,dm_ojb){
+	getSelOptions(objImg, name_obj, dm_ojb,
+	"table=yymisc&amp;src=SS");
+	}
+	function onSelectCommonSx(objImg,name_obj,dm_ojb,ss_name){
+		getSelOptions(objImg, name_obj, dm_ojb,
+		"table=yymisc&amp;src=SS.sx&amp;ssmc="+escape(document.all(ss_name).value));
+	}
+function checkEdu()
+{
+  var l=0;
+  var inputNum = 0;
+  for(var i=0;i&lt;=edunum;i++)
+  {
+    var k=0;
+    if( document.all.item("experiencedto["+i+"].ksny").value!=""
+     || document.all.item("experiencedto["+i+"].jzny").value!=""
+     || document.all.item("experiencedto["+i+"].gzdw").value!=""
+     || document.all.item("experiencedto["+i+"].drzw").value!=""){
+    	inputNum++;
+    }
+    if(document.all.item("experiencedto["+i+"].ksny").value!=""){
+	  if(getLength(document.all.item("experiencedto["+i+"].ksny").value) &gt; 10)
+	 {
+	    alert("第"+(i+1)+"条高中毕业后经历起始年月长度不能超过10个字符。")
+        document.all.item("experiencedto["+i+"].ksny").select();
+	   return false;
+	 }
+	  k++;
+	}
+	if(document.all.item("experiencedto["+i+"].jzny").value!=""){
+
+	 if(getLength(document.all.item("experiencedto["+i+"].jzny").value) &gt; 10)
+	 {
+	    alert("第"+(i+1)+"条高中毕业后经历终止年月长度不能超过10个字符")
+        document.all.item("experiencedto["+i+"].jzny").select();
+	   return false;
+	 }
+	  k++;
+	 }
+	if(document.all.item("experiencedto["+i+"].gzdw").value!="")
+	{	if(document.all.item("experiencedto["+i+"].gzdw").value.length &gt;120)
+		{
+			alert("工作单位或学校名称最多只能输入120个字符！");
+			document.all.item("experiencedto["+i+"].gzdw").select();
+			return false;
+		}
+		k++;
+	}
+
+	if(document.all.item("experiencedto["+i+"].drzw").value!="")
+	{
+		if(document.all.item("experiencedto["+i+"].drzw").value.length &gt;120)
+		{
+			alert("担任职务最多只能输入120个字符！");
+			document.all.item("experiencedto["+i+"].drzw").select();
+			return false;
+		}
+		k++;
+	}
+	if(document.all.item("experiencedto["+i+"].dz").value!="")
+	{
+		if(document.all.item("experiencedto["+i+"].dz").value.length &gt;120)
+		{
+			alert("详细地址最多只能输入120个字符！");
+			document.all.item("experiencedto["+i+"].dz").select();
+			return false;
+		}
+	}
+	 if(k!=0&amp;&amp;k!=4)
+	 {
+	    alert("第"+(i+1)+"条高中毕业后经历不完整,如没有该项内容或不确定请填写无或不详。");
+		document.all.item("experiencedto["+i+"].ksny").select();
+		return false;
+	 }
+	 //判断终止年月晚于其实年月 lium add start
+	 if(document.all.item("experiencedto["+i+"].jzny").value.length=7){
+	 	var ksnyStr=document.all.item("experiencedto["+i+"].ksny").value.substr(0,4);
+		ksnyStr=ksnyStr.concat(document.all.item("experiencedto["+i+"].ksny").value.substr(5,2));
+		var jznyStr=document.all.item("experiencedto["+i+"].jzny").value.substr(0,4);
+		jznyStr=jznyStr.concat(document.all.item("experiencedto["+i+"].jzny").value.substr(5,2));
+		if(!isNaN(ksnyStr) &amp;&amp; !isNaN(jznyStr)){
+			if(jznyStr&lt;ksnyStr){
+				alert("终止年月不应该早于起始年月！");
+				document.all.item("experiencedto["+i+"].jzny").select();
+				return false;
+			}
+		}
+
+	 }
+	 //判断终止年月晚于其实年月 lium add end
+	 if(k==4)
+	 {
+		 l++;
+		 if((i+1)&gt;l&amp;&amp;l&gt;0)
+		 {
+			 alert("高中毕业后经历应按顺序连续填写，不要间隔填写！")
+			 return false;
+		 }
+	 }
+  }
+  if(inputNum &lt; 2){
+  	alert('高中毕业后经历限填2-6个以内！');
+  	return false;
+  }
+  return true;
+}
+function checkFam()
+{
+   var l=0;
+   var inputNum = 0;
+  for(var i=0;i&lt;=famnum;i++)
+  {
+    var k=0;
+
+    if(document.all.item("familydto["+i+"].gx").value!="" ||document.all.item("familydto["+i+"].xm").value!=""||
+    	document.all.item("familydto["+i+"].nl").value!="" || document.all.item("familydto["+i+"].zzmm").value!="" ||
+    	document.all.item("familydto["+i+"].gzdw").value!="" || document.all.item("familydto["+i+"].drzw").value!=""||
+    	document.all.item("familydto["+i+"].gzdz").value!="" || document.all.item("familydto["+i+"].lxfs").value!=""
+    ){
+    
+    inputNum++;
+
+    if(document.all.item("familydto["+i+"].gx").value!="")
+    {
+    	 if(document.all.item("familydto["+i+"].gx").value.length &gt; 10)
+    	 {
+    	 	alert("与本人关系最多只能输入10个字符！");
+		document.all.item("familydto["+i+"].gx").select();
+	   	return false;
+    	 }
+	  k++;
+    }
+  else{
+  	alert("关系不能为空！")
+  	document.all.item("familydto["+i+"].gx").select();
+	  return false;
+  	}
+
+
+	if(document.all.item("familydto["+i+"].xm").value!="")
+	{
+		if(document.all.item("familydto["+i+"].xm").value.length &gt; 30)
+    	 	{
+    	 		alert("姓名最多只能输入30个字符！");
+			document.all.item("familydto["+i+"].xm").select();
+	   		return false;
+    	 	}
+	  	k++;
+	}
+else{
+		alert("姓名不能为空！")
+  	document.all.item("familydto["+i+"].xm").select();
+	  return false;
+	}
+}
+
+	if(document.all.item("familydto["+i+"].nl").value!="")
+	{
+	  if(document.all.item("familydto["+i+"].nl").value.length &gt; 3)
+    	  {
+    	 	alert("年龄最多只能输入3个数字！");
+		document.all.item("familydto["+i+"].nl").select();
+	   	return false;
+    	  }
+	  if(isNaN(document.all.item("familydto["+i+"].nl").value))
+	   {
+		 alert("年龄应为数值类型！");
+		 document.all.item("familydto["+i+"].nl").select();
+		 return false;
+	   }
+	  k++;
+	 }
+	if(document.all.item("familydto["+i+"].zzmm").value!="")
+	{
+		if(document.all.item("familydto["+i+"].zzmm").value.length &gt; 200)
+    	  	{
+    	 		alert("政治面貌最多只能输入200个字符！");
+			document.all.item("familydto["+i+"].zzmm").select();
+	   		return false;
+    	  	}
+    	  	/*
+			var temp_zzmm = document.all.item("familydto["+i+"].zzmm").value;
+    	  	if(temp_zzmm != '中国共产党预备党员' &amp;&amp; temp_zzmm != '中国共产主义青年团团员' &amp;&amp; temp_zzmm != '中国民主同盟盟员' &amp;&amp; temp_zzmm != '中国民主建国会会员' &amp;&amp; temp_zzmm != '中国民主促进会会员' &amp;&amp; temp_zzmm != '九三学社社员' &amp;&amp; temp_zzmm != '台湾民主自治同盟盟员' &amp;&amp; temp_zzmm != '群众' &amp;&amp; temp_zzmm != '其他' &amp;&amp; temp_zzmm != '中国致公党党员' &amp;&amp; temp_zzmm != '中国共产党党员' &amp;&amp; temp_zzmm != '中国国民党革命委员会会员' &amp;&amp; temp_zzmm != '中国农工民主党党员' &amp;&amp; temp_zzmm != '无党派民主人士')
+    	  	{
+    	 		alert("政治面貌错误！您只能输入：[中国共产党预备党员] [中国共产主义青年团团员] [中国民主同盟盟员] [中国民主建国会会员] [中国民主促进会会员] [九三学社社员] [台湾民主自治同盟盟员] [群众] [其他] [中国致公党党员] [中国共产党党员] [中国国民党革命委员会会员] [中国农工民主党党员] [无党派民主人士] 中的一种");
+			document.all.item("familydto["+i+"].zzmm").select();
+	   		return false;
+    	  	}
+			*/
+	  	k++;
+	}
+	if(document.all.item("familydto["+i+"].gzdw").value!="")
+	{
+		if(document.all.item("familydto["+i+"].gzdw").value.length &gt; 120)
+    	  	{
+    	 		alert("工作单位最多只能输入120个字符！");
+			document.all.item("familydto["+i+"].gzdw").select();
+	   		return false;
+    	  	}
+	  	k++;
+	}
+	if(document.all.item("familydto["+i+"].drzw").value!="")
+	{
+		if(document.all.item("familydto["+i+"].drzw").value.length &gt; 120)
+    	  	{
+    	 		alert("职务最多只能输入120个字符！");
+			document.all.item("familydto["+i+"].drzw").select();
+	   		return false;
+    	  	}
+	  	k++;
+	}
+	if(document.all.item("familydto["+i+"].gzdz").value!="")
+	{
+		if(document.all.item("familydto["+i+"].gzdz").value.length &gt; 120)
+    	  	{
+    	 		alert("住址最多只能输入120个字符！");
+			document.all.item("familydto["+i+"].gzdz").select();
+	   		return false;
+    	  	}
+	  	k++;
+	}
+	if(document.all.item("familydto["+i+"].lxfs").value!="")
+	{
+		if(document.all.item("familydto["+i+"].lxfs").value.length &gt; 25)
+    	  	{
+    	 		alert("联系方式最多只能输入25个字符！");
+			document.all.item("familydto["+i+"].lxfs").select();
+	   		return false;
+    	  	}
+	  	k++;
+	}
+  }
+  if(inputNum &lt; 2){
+  	alert('家庭主要成员限填2-5人以内!');
+  	return false;
+  }
+  return true;
+}
+
+
+function checkcontact()
+{
+   var flag=false;
+   if(isFieldCanEdit('contactdto.jtdh') &amp;&amp;document.all("contactdto.jtdh").value!="")
+     flag=true;
+   if(isFieldCanEdit('contactdto.xndh') &amp;&amp;document.all("contactdto.xndh").value!="")
+     flag=true;
+   if(isFieldCanEdit('contactdto.yddh') &amp;&amp; document.all("contactdto.yddh").value!="")
+     flag=true;
+   /*
+   if(document.all("contactdto.xlth").value!="")
+     flag=true;*/
+   if(!flag)
+   {
+      alert("联系电话至少应填写其一!");
+      return false;
+   }
+   return true;
+}
+
+function checkotherinfo()
+{
+     /* 
+     if(document.all.item("studentotherinfo.gljl").value!="")
+   {
+      if(isNaN(document.all.item("studentotherinfo.gljl").value))
+	   {
+		 alert("工龄/军龄应为数值类型！");
+		 document.all.item("studentotherinfo.gljl").select();
+		 return false;
+	   }
+   }*/
+     if(isFieldCanEdit('studentprimeinfo.bysj') &amp;&amp; document.all.item("studentotherinfo.bysj").value!="")
+	   {
+		  if(!validateDate(document.all.item("studentotherinfo.bysj"),"yyyy-mm-dd"))
+		 {
+		   document.all.item("studentotherinfo.bysj").select();
+		   return false;
+		 }
+	   }
+	
+   /* 
+   if(document.all("studentotherinfo.dywycj").value!=""){
+     var n = document.all("studentotherinfo.dywycj").value
+	 //外语成绩也可以是文字 lium 20061124
+	 if(n.length&gt;20){
+	  alert("第一外语成绩 不能超过20个字!")
+       document.all("studentotherinfo.dywycj").select();
+       return false;
+	 }
+   }
+   if(document.all("studentotherinfo.dewycj").value!=""){
+     var n = document.all("studentotherinfo.dewycj").value
+	  if(n.length&gt;20){
+	  alert("第二外语成绩 不能超过20个字!")
+       document.all("studentotherinfo.dewycj").select();
+       return false;
+	 }
+   }*/
+	 return true;
+}
+function checkFamAndEdu()
+{
+   if(!Validator.Validate(document.familyInfoForm,1)){
+		return false;
+   }
+   if(isFieldCanEdit('studentprimeinfo.tc') &amp;&amp; document.all("studentprimeinfo.tc").value.length&gt;150){
+      alert("特长内容过多,系统要求最多150字,实际为"+document.all("studentprimeinfo.tc").value.length+"字,请删减!");
+      return false;
+   }
+   if(isFieldCanEdit('studentotherinfo.kyqk') &amp;&amp; document.all("studentotherinfo.kyqk").value.length&gt;150){
+      alert("入学前科研情况内容过多,系统要求最多150字,实际为"+document.all("studentotherinfo.kyqk").value.length+"字,请删减!");
+      return false;
+   }
+   if(document.familyInfoForm.action.indexOf('tabIndex')&lt;=0){
+   	  document.familyInfoForm.action = document.familyInfoForm.action+'&amp;tabIndex='+document.getElementById('tabIndex').value;
+   }
+   return  checkFam()&amp;&amp;checkEdu();
+}
+
+function checkStdinfo() {
+	if(document.all("studentprimeinfo.cczdz").value.length &gt; 30) {
+		alert("乘车终点站不能超过30个字符.");
+		return false;
+	}
+
+	if(document.all("studentotherinfo.gzdw").value.length &gt; 150) {
+		alert("入学前工作(学习)单位不能超过150个字符.");
+		return false;
+	}
+
+	if(document.all("studentotherinfo.gzdwdz").value.length &gt; 150) {
+		alert("入学前工作(学习)单位地址不能超过150个字符.");
+		return false;
+	}
+
+	if(document.all("studentotherinfo.gzdwyb").value.length &gt; 6) {
+		alert("入学前工作(学习)单位邮编不能超过6个字符.");
+		return false;
+	}
+
+	if(document.all("studentotherinfo.kyqk").value.length &gt; 150) {
+		alert("入学前科研情况不能超过150个字符.");
+		return false;
+	}
+	return true;
+
+}
+
+//检查学生基本信息
+function checkbaseinfo() {
+	if(isFieldCanEdit('studentprimeinfo.xm') &amp;&amp; document.all.item("studentprimeinfo.xm").value=="") {
+		alert("中文姓名不能为空！");
+		document.all.item("studentprimeinfo.xm").select();
+		return false;
+	}
+	if(isFieldCanEdit('studentbaseinfo.xb') &amp;&amp; document.all.item("studentbaseinfo.xb").value=="") {
+		alert("性别不能为空！");
+		document.all.item("studentbaseinfo.xb").select();
+		return false;
+	}
+	if(isFieldCanEdit('studentprimeinfo.hyzk') &amp;&amp; document.all.item("studentprimeinfo.hyzk").value=="") {
+		alert("婚姻状况不能为空！请选择婚姻状况。");
+		document.all.item("studentprimeinfo.hyzk").select();
+		return false;
+	}
+	if(isFieldCanEdit('studentprimeinfo.zzmm') &amp;&amp; document.all.item("studentprimeinfo.zzmm").value=="") {
+		if(isFieldCanEdit('studentprimeinfo.rdsj') &amp;&amp; document.all.item("studentprimeinfo.rdsj").value!="") {
+			alert("你填写了“政治面貌加入时间”，却没有填写“政治面貌政治面貌”！");
+			document.all.item("studentprimeinfo.rdsj").select();
+			return false;
+		}
+	}
+   else
+   {
+       if(isFieldCanEdit('studentprimeinfo.rdsj') &amp;&amp; document.all.item("studentprimeinfo.rdsj").value!=""){
+	       if(!validateDate(document.all.item("studentprimeinfo.rdsj"),"yyyy-mm-dd")){
+			   document.all.item("studentprimeinfo.rdsj").select();
+			   return false;
+			}
+		}
+   }
+   return true;
+}
+function checkprimeinfo()
+{
+        var str=document.all.item("studentprimeinfo.pylb").value;
+        if(str=="定向"||str=="委托培养")
+		{
+			 if(document.all("studentprimeinfo.dxwpdwdz").value=="")
+			{
+			    alert("定向/委培单位地址不能为空！请输入定向/委培单位地址。");
+				 document.all.item("studentprimeinfo.dxwpdwdz").select();
+				 return false;
+			}
+			/*
+			 if(document.all("studentprimeinfo.dxwpdwyb").value=="")
+			{
+			    alert("定向/委培单位邮编不能为空！请输入定向/委培单位邮编。");
+				 document.all.item("studentprimeinfo.dxwpdwyb").select();
+				 return false;
+			}
+			 if(document.all("studentprimeinfo.dxwpdwlxfs").value=="")
+			{
+			    alert("定向/委培单位联系方式不能为空！请输入定向/委培单位联系方式。");
+				 document.all.item("studentprimeinfo.dxwpdwlxfs").select();
+				 return false;
+			}
+			*/
+		}
+   return true;
+}
+
+
+function check() {
+    if(!checkbaseinfo()){
+    	switchtable(0,3);
+		return false;
+	}
+	if(!checkotherinfo() || !checkcontact()){
+    	switchtable(1,3);
+		return false;
+	}
+	if(!checkFamAndEdu()){
+    	switchtable(2,3);
+		return false;
+	}
+   return true
+}
+function switchtable(index,inum){
+	var displayTrId = new Array('baseInfoTr','contactInfoTr','familyInfoTr');
+	clickTab(index,inum);
+	for(var i = 0; i &lt; inum; i++) {
+		if(index == i){
+			document.getElementById(displayTrId[i]).style.display = '';
+		}else{
+			document.getElementById(displayTrId[i]).style.display = 'none';
+		}
+		if(index == 2){
+			document.getElementById('errorCheckTr').style.display = 'none';
+		}else{
+			document.getElementById('errorCheckTr').style.display = '';
+		}
+	}
+	document.getElementById('tabIndex').value = index;
+}
+function addMessageAtLast(itemId, message){
+	var span = document.createElement("span");
+	span.id = '__ERRORSPAN';
+	span.style.color = "red";
+	span.style.font = "normal 11px tahoma,arial,helvetica,sans-serif";
+	document.getElementById(itemId).parentNode.appendChild(span);
+	span.innerHTML = message;
+}
+function isFieldCanEdit(fieldName){
+	if(!document.getElementById(fieldName)){
+		return false;
+	}
+	if(document.getElementById(fieldName+'edit')){
+		return document.getElementById(fieldName+'edit').style.display =='';
+	}
+	return true;
+}
+function clearUnEditField(){
+	//清除掉不能编辑的组件，防止在后台操作时同时更新这些组件对应的字段
+	var uneditFields = document.getElementsByName('uneditField');
+	if(uneditFields &amp;&amp; uneditFields.length){
+		for(var i = 0; i &lt; uneditFields.length; i++){
+			var field = document.getElementById(uneditFields[i].value+'.edit');
+			if(field){
+				field.parentNode.removeChild(field);
+			}
+		}
+	}
+	return true;
+}
+function loadPage(){
+	
+		var itemId = 'studentprimeinfo.xh';
+		if(document.getElementById(itemId+'.view')){
+			
+			
+			
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId+'.view',' ★学生的唯一标识，不能更改。');
+				}else{
+					addMessageAtLast(itemId+'.view',' ★&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+				
+			
+		}
+	
+		var itemId = 'studentprimeinfo.xm';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '姓名不能为空';
+			
+			
+			
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId+'.view',' ★更改后，需在入学后向研究生院管理处同时提交本人的身份证、户口本、书面申请（可交给院系转送），更改方才有效。');
+				}else{
+					addMessageAtLast(itemId+'.view',' ★&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+				
+			
+		}
+	
+		var itemId = 'studentprimeinfo.xmpy';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '姓名拼音(全拼)不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 姓的字母均要大写，名的首字母用大写，姓与名之间留一空格，名字之间不空格。姓在前，名在后。外国留学生在此处填写其护照上的姓名。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentprimeinfo.zym';
+		if(document.getElementById(itemId+'.view')){
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 没有者为空。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentbaseinfo.xb';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '性别不能为空';
+			
+			
+			
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId+'.view',' ★更改后，需在入学后向研究生院管理处同时提交本人的身份证、户口本、书面申请（可交给院系转送），更改方才有效。');
+				}else{
+					addMessageAtLast(itemId+'.view',' ★&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+				
+			
+		}
+	
+		var itemId = 'studentbaseinfo.csrq';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '出生日期不能为空';
+			
+			
+			
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId+'.view',' ★必须与身份证上的出生日期一致。更改后，需在入学后向研究生院管理处同时提交本人的身份证、户口本、书面申请（可交给院系转送），更改方才有效。');
+				}else{
+					addMessageAtLast(itemId+'.view',' ★&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+				
+			
+		}
+	
+		var itemId = 'studentprimeinfo.zzmm';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '政治面貌不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * ');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentprimeinfo.gatq';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '港澳台侨不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 祖国大陆的学生，若不是港澳台侨，则选填“无”。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentprimeinfo.mqhkszss';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '现户口所在省市不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 必须先查询再选择。入学后户口迁入中山大学者、外国留学生，填“广东省广州市中山大学”；其他学生按实际情况填写。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentprimeinfo.rdsj';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '政治面貌加入时间不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 若记不准确，可凭印象填写一个时间，入学后可修改。若政治面貌为“无党派民主人士”、“群众”或“其他”者，不填时间。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentprimeinfo.gb';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '国家(地区)不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * ');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentprimeinfo.sfzh';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '证件号码不能为空';
+			
+			
+			
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId+'.view',' ★如果是身份证需要为18位，若有字母则必须为大写。需向研究生院管理处提交本人的身份证复印件、户口本复印件、书面申请（可交给院系转送），获批后方可更改。');
+				}else{
+					addMessageAtLast(itemId+'.view',' ★&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+				
+			
+		}
+	
+		var itemId = 'studentprimeinfo.zjlx';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '证件类型不能为空';
+			
+			
+			
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId+'.view',' ★祖国大陆的学生只能选择“身份证”或“军官证”。');
+				}else{
+					addMessageAtLast(itemId+'.view',' ★&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+				
+			
+		}
+	
+		var itemId = 'studentprimeinfo.jgs';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '籍贯（省）不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 如果籍贯为空或有错，必须先修改“籍贯（省）”，再修改“籍贯（市、县）”,此处只能选择省或直辖市，不能有市（县），否则会出错。留学生选“广东省”');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentprimeinfo.jgsx';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '籍贯（市、县）不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 如果籍贯(市、县)下拉列表中为空，请检查籍贯（省）是否为空。留学生选“广州市”');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentbaseinfo.mz';
+		if(document.getElementById(itemId+'.view')){
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * ');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentbaseinfo.csd';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '出生地不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 留学生选填“广东省广州市”');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentprimeinfo.hyzk';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '婚姻状况不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 只需选择“未婚”或“已婚”。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentprimeinfo.ccqsz';
+		if(document.getElementById(itemId+'.view')){
+			
+			
+			
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId+'.view',' ★');
+				}else{
+					addMessageAtLast(itemId+'.view',' ★&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+				
+			
+		}
+	
+		var itemId = 'studentprimeinfo.cczdz';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '乘火车区间（终点站）不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 用于学生在学期间订购火车优惠票，不需者写“无”，必须填写父母亲居住在地同省范围内的地址。入学后不能修改，若要修改需提供父母或配偶调迁证明。起始站为广州市，不需填写。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentprimeinfo.tc';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '特长不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 按实际情况填写， 若没有须写“无”。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'contactdto.jtzz';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '家庭住址不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 学生的联系信息对学校和学生本人非常重要，都是不可缺少的。入学后，任何联系信息有变化，学生均需及时上网更新！！');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'contactdto.jtzzyb';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '家庭住址邮编不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 不清楚者填“无”，入学后及时更新。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'contactdto.jtdh';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '家庭电话不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 须写上区号，范例：020-84110784');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'contactdto.yddh';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '移动电话不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 若现在没有则写“无”。外地手机需加前导0，在学期间，若有变化，需及时上网更新！');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'contactdto.dzyj';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '电子邮件不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 若现在没有则写“无”。在学期间，若有变化，需及时上网更新！');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'contactdto.yl1';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '通讯地址不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 不是入学后在学校的通讯地址。专指放假后学生本人的通讯地址（可能与家庭住址或家长通讯地址相同）。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'contactdto.yl2';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '通讯地址邮编不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 不清楚者填“无”，入学后及时更新。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'contactdto.yl3';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '家长通讯地址不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 父亲或母亲的通讯地址。若没有可写“无”。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'contactdto.yl4';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '家长通讯地址邮编不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 不清楚者填“无”，入学后及时更新。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'contactdto.xndh';
+		if(document.getElementById(itemId+'.view')){
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 先写“无”，请在入学后及时填写');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.dywyyz';
+		if(document.getElementById(itemId+'.view')){
+			
+			
+			
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId+'.view',' ★');
+				}else{
+					addMessageAtLast(itemId+'.view',' ★&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+				
+			
+		}
+	
+		var itemId = 'contactdto.xndz';
+		if(document.getElementById(itemId+'.view')){
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 先写“无”，请在入学后及时填写，范例：&amp;#034;中大南校区园东区120号402&amp;#034; 或者 &amp;#034;不校内住宿&amp;#034;。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.dywydj';
+		if(document.getElementById(itemId+'.view')){
+			
+			
+			
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId+'.view',' ★');
+				}else{
+					addMessageAtLast(itemId+'.view',' ★&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+				
+			
+		}
+	
+		var itemId = 'studentotherinfo.xsly';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '学生来源不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * ');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.sydss';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '生源地（省）不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 学生升学所在地（即从哪里考上来的）,必须先选择省，再选择市县。留学生选“广东省”');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.sydsx';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '生源地（市、县）不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 如果生源地(市、县)下拉列表中为空，请检查生源地（省）是否为空。留学生选“广州市”');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.rxqhkszss';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前户口所在省市不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 留学生选“广东省广州市”');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.gzdw';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前工作(学习)单位不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * ');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.gzdwdz';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前工作(学习)单位地址不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 不清楚具体地址者，可填写到省市。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.gzdwyb';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前工作(学习)单位邮编不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 不清楚者填“无”，入学后及时更新。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.zzxl';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前最终学历不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 以硕博连读或提前攻博入学的博士生，按本科填写学历、学位、专业、毕业时间、毕业院校、毕业院校地址。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.zzxw';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前最终学位不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * ');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.byzy';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前最终毕业(学位)专业不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * ');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.bysj';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前最终学历(学位)毕业时间不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * ');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.byxx';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前最终学历(学位)毕业院校不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * ');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.xxdz';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前最终学历(学位)毕业院校地址不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 不清楚具体地址者，可填写到省市。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+		var itemId = 'studentotherinfo.kyqk';
+		if(document.getElementById(itemId+'.view')){
+			
+				var currItem = document.getElementsByName(itemId)[0];
+				currItem.dataType = 'Require';
+				currItem.msg = '入学前科研情况不能为空';
+			
+			
+				//这两个字段特殊处理
+				if(itemId == 'studentprimeinfo.tc' || itemId == 'studentotherinfo.kyqk'){
+					document.getElementById(itemId+'.view').style.display = 'none';
+					document.getElementById(itemId+'.edit').style.display = '';
+					addMessageAtLast(itemId,' * 按实际情况填写，若没有需写“无”。');
+				}else{
+					addMessageAtLast(itemId+'.view',' *&lt;input type=hidden name="uneditField" value="'+itemId+'"/&gt;');
+				}
+			
+			
+		}
+	
+}
+function checkRdsjNeedInput(){
+	var zzmmArray = {'无党派民主人士':'1','群众':'1','其他':''};
+	var zzmmValue = document.getElementById('studentprimeinfo.zzmm').value;
+	if(zzmmValue != '' &amp;&amp; zzmmArray[zzmmValue] != null){
+		document.getElementById('studentprimeinfo.rdsj').dataType = null;
+	}
+}
+function confirmNoProblem(){
+	checkRdsjNeedInput();
+	if(!Validator.Validate(document.errorCheckForm,1)){
+		return false;
+	}
+	if(confirm('确认[基本信息、联系方式及入学前信息] 无误吗？')){
+		clearUnEditField();
+		document.errorCheckForm.action = document.errorCheckForm.action+'&amp;tabIndex='+document.getElementById('tabIndex').value;
+		return true;
+	}
+	return false;
+}
+function confirmHasProblem(){
+	document.errorCheckForm.action = '/zsuyy/yanyuan/xj/stdinfocollate.do?method=enterErrorCheckPage&amp;tabIndex=';
+	document.errorCheckForm.submit();
+}
+var tabIndexFlag = new Array(false,false,false);
+
+
+
+	tabIndexFlag[0] = true;
+
+</script>
+
+
+
+
+<p><font color="red">
+	带*号项目学生可自行修改立即生效；带★号项目学生可修改,但必须在开学后向研院管理处提供相关材料才有效；
+	学生信息包括基本信息、联系方式及入学前信息、家庭成员及教育(工作经历)，点击相应的文字可进入相应的界面进行核对或修改</font>
+</p>
+<input type="hidden" name="unused" />
+<input type="hidden" name="tabIndex" value="0" />
+<table border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td onclick="switchtable(0,3)" id="resultid1"><script>showTab(0, "基本信息",3,tabIndexFlag[0]);	</script><table border="0" cellpadding="0" cellspacing="0" class="tab"><tbody><tr id="tabTrId0" style="cursor:hand" onclick="clickTab(0,3)"><td background="/zsuyy/image/skin/0/tab_01.gif" height="19" width="6"> </td><td background="/zsuyy/image/skin/0/tab_02.gif" class="article_timeStyle3">基本信息</td><td background="/zsuyy/image/skin/0/tab_03.gif" width="25"> </td></tr></tbody></table>	</td>
+		<td onclick="switchtable(1,3)"><script>showTab(1, "联系方式及入学前信息",3,tabIndexFlag[1]);</script><table border="0" cellpadding="0" cellspacing="0" class="tab"><tbody><tr id="tabTrId1" style="cursor:hand" onclick="clickTab(1,3)"><td background="/zsuyy/image/tab_01.gif" height="19" width="6"> </td><td background="/zsuyy/image/tab_02.gif">联系方式及入学前信息</td><td background="/zsuyy/image/tab_03.gif" width="25"> </td></tr></tbody></table></td>
+		<td onclick="switchtable(2,3)"><script>showTab(2, "家庭成员及教育(工作经历)",3,tabIndexFlag[2]);</script><table border="0" cellpadding="0" cellspacing="0" class="tab"><tbody><tr id="tabTrId2" style="cursor:hand" onclick="clickTab(2,3)"><td background="/zsuyy/image/tab_01.gif" height="19" width="6"> </td><td background="/zsuyy/image/tab_02.gif">家庭成员及教育(工作经历)</td><td background="/zsuyy/image/tab_03.gif" width="25"> </td></tr></tbody></table></td>
+	</tr>		
+</tbody></table>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+  <tbody><tr>
+    <td>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0" class="tab_0">
+          <tbody><tr align="center">
+            <td class="tab_3" height="25">
+            	<font color="#009933"></font><font color="red"></font>
+            	
+            </td>
+          </tr>
+           <form action="/zsuyy/yanyuan/xj/studentmng.do?method=saveConfirmInfo" method="post" name="errorCheckForm"></form>
+            <input type="hidden" name="studentbaseinfo.id" value="2016082516214250" />
+        	<input type="hidden" name="personId" value="16214250" />
+        	<input type="hidden" name="studentprimeinfo.id" value="2016082516214250" />
+        	<input type="hidden" name="studentotherinfo.id" value="2016082516214250" />
+        	<input type="hidden" name="contactdto.id" value="2016082516214250" />
+        	<input type="hidden" name="dsz" value="双证" />
+        	<input type="hidden" name="xslb" value="统招统分研究生" />
+        	<input type="hidden" name="isFreshman" value="false" />
+           <tr id="baseInfoTr">
+            <td height="25">
+            <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" class="tab_2">
+                <tbody><tr class="tab_5" width="100%">
+                   <td height="22" class="tab_2" colspan="5">基本信息</td>
+                </tr>
+                <tr class="tab_5">
+                  <td height="23" align="right"> 学号： </td>
+                  <td height="23" align="left">
+                  	    <span id="studentprimeinfo.xh.view">16214250</span>
+                  	    <span id="studentprimeinfo.xh.edit" style="display:none"><input title="学号,20字符以内" name="studentprimeinfo.xh" value="16214250" type="text" size="20" maxlength="20" /></span>
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> ★<input type="hidden" name="uneditField" value="studentprimeinfo.xh" /></span></td>
+                  <td height="23" align="right"> 中文姓名： </td>
+                  <td height="23" align="left"> 
+                  		<span id="studentprimeinfo.xm.view">刘继辉</span>
+                  	    <span id="studentprimeinfo.xm.edit" style="display:none"><input title="中文姓名,30汉字以内" name="studentprimeinfo.xm" value="刘继辉" type="text" size="20" maxlength="30" /></span>
+				   <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> ★<input type="hidden" name="uneditField" value="studentprimeinfo.xm" /></span></td>
+				 <td rowspan="6" align="center" width="20%">
+						暂无照片
+						
+                </td></tr>
+                <tr class="tab_5">
+                  <td height="23" align="right"> 姓名全拼(或留学生护照姓名)： </td>
+                  <td height="23" align="left">
+                  	  <span id="studentprimeinfo.xmpy.view">liujihui</span>
+                      <span id="studentprimeinfo.xmpy.edit" style="display:none"><input title="姓名全拼(或留学生护照姓名),60英文字符以内" value="liujihui" name="studentprimeinfo.xmpy" type="text" size="20" maxlength="60" /></span>
+                  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.xmpy" /></span></td>
+                  <td height="23" align="right">性别：</td>
+                  <td height="23" align="left">
+				      <span id="studentbaseinfo.xb.view">男</span>
+				  	  <span id="studentbaseinfo.xb.edit" style="display:none"><input type="text" name="studentbaseinfo.xb" readonly="" class="input_textReadonly" value="男" size="20" /><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onclick="onSelectDmcode(this,'studentbaseinfo.xb','','table=yymisc&amp;src=DMCODE&amp;fatherId=20001&amp;needLike=false&amp;needFullName=false&amp;data=onlyname','','','true')" /></span>
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> ★<input type="hidden" name="uneditField" value="studentbaseinfo.xb" /></span></td>
+                  <!-- 
+                  <TD height="23" align="right">姓名简拼： </TD>
+                  <TD height="23" align="left"><input title="姓名简拼,10英文字符以内" name="studentprimeinfo.xmpyjp" value="" type="text" size="20" maxlength="10"></TD>
+                  -->
+                </tr>
+                <tr class="tab_5">
+                  <td height="23" align="right">曾用名：</td>
+                  <td height="23" align="left">
+                      <span id="studentprimeinfo.zym.view">无</span>
+                  	  <span id="studentprimeinfo.zym.edit" style="display:none"><input title="曾用名,15汉字以内" name="studentprimeinfo.zym" value="无" type="text" size="20" maxlength="15" /></span>
+                  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.zym" /></span></td>
+                  <td height="23" align="right"> 婚姻状况： </td>
+                  <td height="23" align="left">
+                  	  <span id="studentprimeinfo.hyzk.view">未婚</span>
+                      <span id="studentprimeinfo.hyzk.edit" style="display:none"><input type="text" name="studentprimeinfo.hyzk" readonly="" class="input_textReadonly" value="未婚" size="20" /><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onclick="onSelectDmcode(this,'studentprimeinfo.hyzk','','table=yymisc&amp;src=DMCODE&amp;fatherId=20003&amp;needLike=false&amp;needFullName=false&amp;data=onlyname','','','true')" /></span>
+                  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.hyzk" /></span></td>
+                </tr>
+                <tr class="tab_5">
+                  <td height="23" align="right">出生日期： </td>
+                  <td height="23" align="left">
+                      <span id="studentbaseinfo.csrq.view">1992-01-27</span>
+                  	  <span id="studentbaseinfo.csrq.edit" style="display:none"><input name="studentbaseinfo.csrq" value="1992-01-27" title="出生日期,格式：yyyy-mm-dd" type="text" size="20" maxlength="10" /><input type="button" name="bcsrq" value="..." onclick="setday(this,document.all('studentbaseinfo.csrq'))" class="button" /></span>
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> ★<input type="hidden" name="uneditField" value="studentbaseinfo.csrq" /></span></td>
+                  <td height="23" align="right">出生地：</td>
+                  <td height="23" align="left">
+                  	  <span id="studentbaseinfo.csd.view">广东省</span>
+                  	  <span id="studentbaseinfo.csd.edit" style="display:none"><input title="出生地,30汉字以内" name="studentbaseinfo.csd" value="广东省" type="text" size="20" maxlength="30" /></span>
+                  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentbaseinfo.csd" /></span></td>
+                </tr>
+
+                <tr class="tab_5">
+                  <td height="23" align="right"> 政治面貌： </td>
+                  <td height="23" align="left">
+				  		<span id="studentprimeinfo.zzmm.view">中国共产党党员</span>
+				  		<span id="studentprimeinfo.zzmm.edit" style="display:none"><input type="text" name="studentprimeinfo.zzmm" readonly="" class="input_textReadonly" value="中国共产党党员" size="20" /><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onclick="onSelectDmcode(this,'studentprimeinfo.zzmm','','table=yymisc&amp;src=DMCODE&amp;fatherId=20011&amp;needLike=false&amp;needFullName=false&amp;data=onlyname','','','true')" /></span>
+				  		
+                  
+                  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.zzmm" /></span></td>
+                  <td height="23" align="right">政治面貌加入时间： </td>
+                  <td height="23" align="left">
+				        <span id="studentprimeinfo.rdsj.view">2011-12-01</span>
+				  		<span id="studentprimeinfo.rdsj.edit" style="display:none"><input name="studentprimeinfo.rdsj" value="2011-12-01" title="加入时间,格式：yyyy-mm-dd" type="text" size="20" maxlength="10" /><input type="button" name="bcsrq" value="..." onclick="setday(this,document.all('studentprimeinfo.rdsj'))" class="button" /></span>
+				        
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.rdsj" /></span></td>
+                </tr>
+                <tr class="tab_5">
+                  <td height="23" align="right">港澳台侨：</td>
+                  <td height="23" align="left">
+				  	<span id="studentprimeinfo.gatq.view">无</span>
+				    <span id="studentprimeinfo.gatq.edit" style="display:none">
+				    	<input type="hidden" name="studentprimeinfo.gatq" value="无" />
+				    </span>
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.gatq" /></span></td>
+				  <td height="23" align="right">现户口所在省市：</td>
+                  <td height="23" align="left">
+				  		<span id="studentprimeinfo.mqhkszss.view">广东省</span>
+				  		<span id="studentprimeinfo.mqhkszss.edit" style="display:none">
+				  			<input type="hidden" name="studentprimeinfo.mqhkszss" value="广东省" />
+				  		</span>
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.mqhkszss" /></span></td>
+                </tr>
+                <tr class="tab_5">
+
+				  <td height="23" align="right">国家或地区：</td>
+                  <td height="23" align="left">
+					<span id="studentprimeinfo.gb.view">中国</span>
+				  	<span id="studentprimeinfo.gb.edit" style="display:none"><input type="text" name="studentprimeinfo.gb" value="中国" size="20" /><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onclick="onSelectDmcode(this,'studentprimeinfo.gb','','table=yymisc&amp;src=DMCODE&amp;fatherId=30009&amp;needLike=false&amp;needFullName=false&amp;data=onlyname','','','true')" /></span>
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.gb" /></span></td>
+                  <td height="23" align="right">民族：</td>
+                  <td height="23" align="left">
+                  	   <span id="studentbaseinfo.mz.view">汉族</span>
+				       <span id="studentbaseinfo.mz.edit" style="display:none"><input type="text" name="studentbaseinfo.mz" readonly="" class="input_textReadonly" value="汉族" size="20" /><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onclick="onSelectDmcode(this,'studentbaseinfo.mz','','table=yymisc&amp;src=DMCODE&amp;fatherId=20002&amp;needLike=false&amp;needFullName=false&amp;data=onlyname','','','true')" /></span>
+				   <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentbaseinfo.mz" /></span></td>
+				   <td align="center">入学照片(上)<br />毕业照片(下)</td>
+				</tr>
+				<!--
+				<TR  class="tab_5">
+				  <TD align="right" height="23"></TD>
+                  <TD align="left"></TD>
+                  
+                  <TD height="23" align="right" class="">血型： </td>
+                  <TD height="23" align="left">
+				   <yycode name="studentbaseinfo.xx" size="20"  fatherId="20017" initValue="${studentmngForm.studentbaseinfo.xx}"/>
+				   </TD>
+                  <TD height="23" align="right"> 婚姻状况： </TD>
+                  <TD height="23" align="left">
+                  <yycode name="studentprimeinfo.hyzk" size="20"  fatherId="20003" initValue="${studentmngForm.studentprimeinfo.hyzk}"/>
+                  <font color="red">*</font>
+                  </TD>
+				  <td align="center" >入学照片(上)<br>毕业照片(下)</td>
+                </TR>
+                -->
+                <tr class="tab_5">
+                  <td height="23" align="right"> 证件类型： </td>
+                  <td height="23" align="left">
+                  	<span id="studentprimeinfo.zjlx.view">身份证</span>
+				  	<span id="studentprimeinfo.zjlx.edit" style="display:none"><input type="text" name="studentprimeinfo.zjlx" readonly="" class="input_textReadonly" value="身份证" size="20" /><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onclick="onSelectDmcode(this,'studentprimeinfo.zjlx','','table=yymisc&amp;src=DMCODE&amp;fatherId=920000002&amp;needLike=false&amp;needFullName=false&amp;data=onlyname','','','true')" /></span>
+				  
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> ★<input type="hidden" name="uneditField" value="studentprimeinfo.zjlx" /></span></td>
+                  <td height="23" align="right"> 证件号码： </td>
+                  <td height="23" align="left"> 
+                  	<span id="studentprimeinfo.sfzh.view">440105199201275116</span>
+				  	<span id="studentprimeinfo.sfzh.edit" style="display:none"><input title="证件号码,30字符以内" name="studentprimeinfo.sfzh" value="440105199201275116" type="text" size="20" maxlength="30" /></span>
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> ★<input type="hidden" name="uneditField" value="studentprimeinfo.sfzh" /></span></td>
+				   
+                     <td rowspan="8" align="center">
+                     	
+		    			暂无照片
+                      </td>
+				  
+				 
+                </tr>
+                <tr class="tab_5">
+                  <td height="23" align="right"> 籍贯（省）： </td>
+                  <td height="23" align="left">
+                  	<span id="studentprimeinfo.jgs.view">广东省</span>
+				  	<span id="studentprimeinfo.jgs.edit" style="display:none"><input type="text" name="studentprimeinfo.jgs" size="20" value="广东省" ondblclick="onSelectSs(document.all.forselectsssx)" /><img src="/zsuyy/image/combo_arrow.gif" id="forselectsssx" align="absmiddle" style="cursor:hand" onclick="onSelectSs(this)" maxlength="100" /></span>
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.jgs" /></span></td>
+                  <td height="23" align="right"> 籍贯（市、县）： </td>
+                  <td height="23" align="left">
+                  	<span id="studentprimeinfo.jgsx.view">广州市</span>
+				  	<span id="studentprimeinfo.jgsx.edit" style="display:none"><input type="text" name="studentprimeinfo.jgsx" size="20" value="广州市" ondblclick="onSelectSx(document.all.forselectsssx2)" /><img src="/zsuyy/image/combo_arrow.gif" id="forselectsssx2" align="absmiddle" style="cursor:hand" onclick="onSelectSx(this)" maxlength="100" /></span>
+                  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.jgsx" /></span></td>
+                
+                </tr>
+				<!--
+                <tr class="tab_5">
+
+				  <TD height="23" align="right">港澳台侨：</TD>
+                  <TD height="23" align="left">
+				  	无
+				  </td>
+                  <td><div align="right">户口性质：</div></td>
+                  <td>
+				  <yycode name="studentprimeinfo.hkxz" size="20"  fatherId="20005" initValue="${studentmngForm.studentprimeinfo.hkxz}"/>
+
+				  </td>
+                </tr>
+                  -->
+                <tr class="tab_5">
+                  <td height="23" align="right"> 乘火车区间(起始站)： </td>
+                  <td height="23" align="left"> 
+                  	<span id="studentprimeinfo.ccqsz.view"></span>
+				  	<span id="studentprimeinfo.ccqsz.edit" style="display:none">
+				  		
+				        <input value="广州" name="studentprimeinfo.ccqsz" type="text" size="20" maxlength="30" />
+				  	</span>
+                  	
+				  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> ★<input type="hidden" name="uneditField" value="studentprimeinfo.ccqsz" /></span></td>
+                  <td><div align="right">乘火车区间(终点站)： </div></td>
+                  <td>
+                    <span id="studentprimeinfo.cczdz.view"></span>
+				  	<span id="studentprimeinfo.cczdz.edit" style="display:none"><input name="studentprimeinfo.cczdz" type="text" value="" size="20" maxlength="30" /></span>
+                  
+                  <span id="__ERRORSPAN" style="color: red; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: tahoma, arial, helvetica, sans-serif;"> *<input type="hidden" name="uneditField" value="studentprimeinfo.cczdz" /></span></td>
+                </tr>
+
+				<tr class="tab_5">
+                  <td height="23" align="left" colspan="4">
+                  	  <div class="article_help" style="padding-left: 40px;">
+                  	      若修改"姓名"、"出生日期"、"身份证号"，需同时向研究生院管理处提交本人的书面申请、身份证复印件、户口本复印件后，修改方能生效。
+                  	  </div>
+                  </td>
+                </tr>
+              </tbody></table>
+              </td>
+          </tr>
+	      <tr id="contactInfoTr" style="display:none">
+            <td height="25">
+            
+            <input type="hidden" name="studentbaseinfo.id" value="2016082516214250" />
+        	<input type="hidden" name="studentbaseinfo.personId" value="16214250" />
+        	<input type="hidden" name="studentprimeinfo.id" value="2016082516214250" />
+        	<input type="hidden" name="studentotherinfo.id" value="2016082516214250" />
+        	<input type="hidden" name="contactdto.id" value="2016082516214250" />
+            <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" class="tab_2">
+            	<tbody><tr>
+             		<td height="23" colspan="4" align="left" class="tab_2">其他信息</td>
+            	</tr>
+           		<!-- 
+           		<TR class="tab_5">
+                  <TD width="17%" height="23" align="right"> 准考证(报考)号： </TD>
+                  <TD width="37%" height="23" align="left"> 105584620108268</TD>
+                  <TD height="23" align="right">通知书号：</TD>
+                  <TD height="23" align="left"></TD>
+                </TR>
+				<TR class="tab_5">
+
+                  <TD height="23" align="right">第一外语语种： </TD>
+                  <TD height="23" align="left"> <input type="text" name="studentotherinfo.dywyyz" readonly class="input_textReadonly" size="20"><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onClick="onSelectDmcode(this,'studentotherinfo.dywyyz','','table=yymisc&src=DMCODE&fatherId=1000100480009&needLike=false&needFullName=false&data=ONLYNAME','','','true')"> </TD>
+                  <TD height="23" align="right">第二外语语种：</TD>
+                  <TD height="23" align="left"><input type="text" name="studentotherinfo.dewyyz" readonly class="input_textReadonly" size="20"><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onClick="onSelectDmcode(this,'studentotherinfo.dewyyz','','table=yymisc&src=DMCODE&fatherId=1000100480009&needLike=false&needFullName=false&data=ONLYNAME','','','true')"> </TD>
+				</TR>
+                <TR class="tab_5">
+                  <TD height="23" align="right">第一外语等级： </TD>
+                  <TD height="23" align="left"><input name="studentotherinfo.dywydj" value="" type="text" size="20" maxlength="100"> </TD>
+                  <TD height="23" align="right">第二外语等级： </TD>
+                  <TD height="23" align="left"><input name="studentotherinfo.dewydj" value="" type="text" size="20" maxlength="100"></TD>
+                </TR>
+				<TR class="tab_5">
+                  <TD height="23" align="right">第一外语成绩： </TD>
+                  <TD height="23" align="left"><input name="studentotherinfo.dywycj" value="" type="text" size="20" maxlength="20"> </TD>
+                  <TD height="23" align="right">第二外语成绩： </TD>
+                  <TD height="23" align="left"><input name="studentotherinfo.dewycj" value="" type="text" size="20" maxlength="20"></TD>
+                </TR>
+                 -->
+				<tr class="tab_5">
+				   <td height="23" align="right"> 学生来源： </td>
+                   <td height="23" align="left"> 
+                  	<span id="studentotherinfo.xsly.view">应届本科生</span>
+				  	<span id="studentotherinfo.xsly.edit" style="display:none"><input type="text" name="studentotherinfo.xsly" readonly="" class="input_textReadonly" value="应届本科生" size="20" /><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onclick="onSelectDmcode(this,'studentotherinfo.xsly','','table=yymisc&amp;src=DMCODE&amp;fatherId=922000001&amp;needLike=false&amp;needFullName=false&amp;data=ONLYNAME','','','true')" /></span>
+                  </td>
+                  <td height="23" align="right"></td>
+                  <td height="23"></td>
+                  <!--
+                  <TD width="18%" height="23" align="right"> 工龄/军龄： </td>
+                  <TD width="28%" height="23" align="left"> <INPUT name="studentotherinfo.gljl" value="" type="text" size="20" maxlength="10">年 </TD>
+				    -->
+				</tr>
+                <tr class="tab_5">
+                  <td height="23" align="right"> 生源地（省）： </td>
+                  <td height="23" align="left">
+                  	<span id="studentotherinfo.sydss.view">广东省</span>
+				  	<span id="studentotherinfo.sydss.edit" style="display:none"><input type="text" name="studentotherinfo.sydss" size="20" class="input_textReadonly" value="广东省" readonly="true" ondblclick="onSelectSs(document.all.forselectsssxo1)" onkeyup="onSelectSs(document.all.forselectsssxo1)" /><img src="/zsuyy/image/combo_arrow.gif" id="forselectsssxo1" align="absmiddle" style="cursor:hand" onclick="onSelectCommonSs(this,document.all.item('studentotherinfo.sydss'),document.all.unused)" /></span>
+				  </td>
+                  <td height="23" align="right"> 生源地（市、县）： </td>
+                  <td height="23" align="left">
+                  	<span id="studentotherinfo.sydsx.view">广州市</span>
+				  	<span id="studentotherinfo.sydsx.edit" style="display:none">
+				  		<input type="text" name="studentotherinfo.sydsx" class="input_textReadonly" size="20" value="广州市" readonly="true" ondblclick="onSelectSx(document.all.forselectsssxo2)" onkeyup="onSelectSX(document.all.forselectsssxo2)" /><img src="/zsuyy/image/combo_arrow.gif" id="forselectsssxo2" align="absmiddle" style="cursor:hand" onclick="onSelectCommonSx(this,document.all.item('studentotherinfo.sydsx'),document.all.unused,'studentotherinfo.sydss')" />
+				  	</span>
+				  
+                  </td>
+                </tr>
+                 <tr class="tab_5">
+                  <td height="23" align="right">入学前户口所在省市：</td>
+                  <td height="23" align="left"> 
+                  	<span id="studentotherinfo.rxqhkszss.view">广东省</span>
+				  	<span id="studentotherinfo.rxqhkszss.edit" style="display:none">
+				  		<input type="text" name="studentotherinfo.rxqhkszss" size="20" class="input_textReadonly" value="广东省" readonly="true" ondblclick="onSelectCommonSs(document.all.forselectsssxo3,this,document.all.item('studentotherinfo.rxqhkszssdm'))" onkeyup="onSelectCommonSs(document.all.forselectsssxo3,this,document.all.item('studentotherinfo.rxqhkszssdm'))" /><img src="/zsuyy/image/combo_arrow.gif" id="forselectsssxo3" align="absmiddle" style="cursor:hand" onclick="onSelectCommonSs(this,document.all.item('studentotherinfo.rxqhkszss'),document.all.item('studentotherinfo.rxqhkszssdm'))" />
+                    	<input type="hidden" name="studentotherinfo.rxqhkszssdm" value="" />
+				  	</span>
+                  	<!--yy:code name="studentotherinfo.rxqhkszss"  fatherId="30012" /-->
+
+                    </td>
+                  <td height="23" align="right"> 入学前工作(学习)单位： </td>
+                  <td height="23" align="left"> 
+                  	<span id="studentotherinfo.gzdw.view">中山大学</span>
+				  	<span id="studentotherinfo.gzdw.edit" style="display:none"><input name="studentotherinfo.gzdw" value="中山大学" type="text" size="20" maxlength="100" /> </span>
+
+                  </td>
+                </tr>
+				<tr class="tab_5">
+                  <td height="23" align="right">入学前工作(学习)单位地址：</td>
+                  <td height="23" align="left">
+                  	<span id="studentotherinfo.gzdwdz.view">肇庆</span>
+				  	<span id="studentotherinfo.gzdwdz.edit" style="display:none"><input name="studentotherinfo.gzdwdz" value="肇庆" type="text" size="20" maxlength="100" /></span></td>
+                  	
+                  <td height="23" align="right">入学前工作(学习)单位邮编： </td>
+                  <td height="23" align="left">
+                  	<span id="studentotherinfo.gzdwyb.view">510000</span>
+				  	<span id="studentotherinfo.gzdwyb.edit" style="display:none"><input name="studentotherinfo.gzdwyb" value="510000" type="text" size="20" maxlength="6" /></span>
+                  </td>
+                </tr>
+                <tr class="tab_5">
+                  <td height="23" align="right">入学前最终学历： </td>
+                  <td height="23" align="left"> 
+                  	 <span id="studentotherinfo.zzxl.view">本科毕业</span>
+				  	 <span id="studentotherinfo.zzxl.edit" style="display:none"><input type="text" name="studentotherinfo.zzxl" value="本科毕业" size="20" /><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onclick="onSelectDmcode(this,'studentotherinfo.zzxl','','table=yymisc&amp;src=DMCODE&amp;fatherId=921000008&amp;needLike=false&amp;needFullName=false&amp;data=onlyname','','','true')" /></span>
+                  </td>
+                  <td height="23" align="right"> 入学前最终学位： </td>
+                  <td height="23" align="left"> 
+                     <span id="studentotherinfo.zzxw.view">无</span>
+				  	 <span id="studentotherinfo.zzxw.edit" style="display:none"><input type="text" name="studentotherinfo.zzxw" value="无" size="20" /><input type="button" class="input_selectBtnNoLink" title="点击这里弹出选择框" onclick="onSelectDmcode(this,'studentotherinfo.zzxw','','table=yymisc&amp;src=DMCODE&amp;fatherId=921000013&amp;needLike=false&amp;needFullName=false&amp;data=onlyname','','','true')" /></span>
+
+                     
+                  </td>
+                </tr>
+				<tr class="tab_5">
+                  <td height="23" align="right">入学前最终毕业(学位)专业：</td>
+                  <td height="23" align="left">
+                  	<span id="studentotherinfo.byzy.view">软件工程</span>
+				  	<span id="studentotherinfo.byzy.edit" style="display:none"><input name="studentotherinfo.byzy" value="软件工程" type="text" size="20" maxlength="100" /></span>
+                  	</td>
+                  <td height="23" align="right">入学前最终学历(学位)毕业时间：</td>
+                  <td height="23" align="left">
+                  	<span id="studentotherinfo.bysj.view">201407</span>
+				  	<span id="studentotherinfo.bysj.edit" style="display:none"><input name="studentotherinfo.bysj" value="201407" type="text" size="20" /><input type="button" name="bbysj" value="..." class="button" onclick="setday(this,document.all('studentotherinfo.bysj'))" /></span></td>
+                  	
+                </tr>
+                <tr class="tab_5">
+                  <td height="23" align="right">入学前最终学历(学位)毕业院校： </td>
+                  <td height="23" align="left"> 
+                  	<span id="studentotherinfo.byxx.view">中山大学学士学位</span>
+				  	<span id="studentotherinfo.byxx.edit" style="display:none"><input name="studentotherinfo.byxx" value="中山大学学士学位" type="text" size="20" maxlength="100" /> </span>
+
+                   </td>
+                  <td height="23" align="right">入学前最终学历(学位)毕业院校地址 ： </td>
+                  <td height="23" align="left">
+                    <span id="studentotherinfo.xxdz.view">中山大学学士学位</span>
+				  	<span id="studentotherinfo.xxdz.edit" style="display:none"><input name="studentotherinfo.xxdz" value="中山大学学士学位" type="text" size="20" maxlength="100" /></span>
+                   </td>
+                </tr>
+                <!--
+                <TR class="tab_5">
+                  <TD height="23" align="right">入学前最终学历(学位)毕业院校邮编： </TD>
+                  <TD height="23" align="left"> <INPUT name="studentotherinfo.xxyb" value="" type="text" size="20" maxlength="6">  </TD>
+                  <TD height="23" align="right">考区：</TD>
+                  <TD height="23" align="left"> 
+                    </TD>
+                </TR>
+                 -->
+				<tr>
+             		<td height="23" colspan="4" align="left" class="tab_2">联系信息〈<font color="red">学生入学后需随时更新自己的联系信息。联系电话至少应填写其一</font>〉</td>
+            	</tr>
+				<tr class="tab_5">
+                  <td height="23" align="right"> 家庭电话： </td>
+                  <td height="23" align="left">
+                  	<span id="contactdto.jtdh.view">020-88599990</span>
+                  	<span id="contactdto.jtdh.edit" style="display:none"><input name="contactdto.jtdh" value="020-88599990" type="text" size="20" maxlength="30" /></span>
+                  	
+                  </td>
+                  <td height="23" align="right"> 学校宿舍： </td>
+                  <td height="23" align="left">
+                    <span id="contactdto.xndz.view">中大东校区明德园2号713</span>
+                  	<span id="contactdto.xndz.edit" style="display:none">
+						<input name="contactdto.xndz" value="中大东校区明德园2号713" type="text" size="20" maxlength="30" />
+					</span> 
+                   </td>
+                 </tr>
+                <tr class="tab_5">
+                  <td height="23" align="right"> 宿舍电话： </td>
+                  <td height="23" align="left"> 
+                  	<span id="contactdto.xndh.view">无</span>
+                  	<span id="contactdto.xndh.edit" style="display:none">
+						<input name="contactdto.xndh" value="无" type="text" size="20" maxlength="30" />
+					</span> 
+
+                  </td>
+                  <td height="23" align="right"> 移动电话： </td>
+                  <td height="23" align="left"> 
+                    <span id="contactdto.yddh.view">15989066480</span>
+                    <span id="contactdto.yddh.edit" style="display:none"><input name="contactdto.yddh" value="15989066480" type="text" size="20" maxlength="30" /></span>
+                    
+                  	
+                  </td>
+
+                 </tr>
+				<!--
+				<TR class="tab_5">
+                  <TD height="23" align="right"> QQ号码： </td>
+                  <TD height="23" align="left"> <INPUT name="contactdto.qqh" value=""  type="text" size="20" maxlength="30"></TD>
+				  <TD height="23" align="right"> MSN： </td>
+                  <TD height="23" align="left"> <INPUT name="contactdto.msn" value="" type="text" size="20" maxlength="60"></TD>
+				</TR>
+				  -->
+				<tr class="tab_5">
+                  <td height="23" align="right"> 家庭住址： </td>
+                  <td height="23" align="left"> 
+                    <span id="contactdto.jtzz.view"></span>
+                    <span id="contactdto.jtzz.edit" style="display:none"><input name="contactdto.jtzz" value="" type="text" size="20" maxlength="60" /></span>
+                  </td>
+                  <td height="23" align="right"> 家庭住址邮编： </td>
+                  <td height="23" align="left"> 
+                    <span id="contactdto.jtzzyb.view">510405</span>
+                    <span id="contactdto.jtzzyb.edit" style="display:none"><input name="contactdto.jtzzyb" value="510405" type="text" size="20" maxlength="6" /></span></td>
+                </tr>
+                <tr class="tab_5">
+                  <td height="23" align="right"> 学生通讯地址： </td>
+                  <td height="23" align="left"> 
+                  	<span id="contactdto.yl1.view">广州市白云区广园中路云苑直街24号904</span>
+                    <span id="contactdto.yl1.edit" style="display:none"><input name="contactdto.yl1" value="广州市白云区广园中路云苑直街24号904" type="text" size="20" maxlength="60" /></span>
+                  	
+                  </td>
+				  <td height="23" align="right"> 学生通讯地址邮编： </td>
+                  <td height="23" align="left"> 
+                  	<span id="contactdto.yl2.view">510405</span>
+                    <span id="contactdto.yl2.edit" style="display:none"><input name="contactdto.yl2" value="510405" type="text" size="20" maxlength="60" /></span></td>
+                    
+				</tr>
+				<tr class="tab_5">
+                  <td height="23" align="right"> 电子邮件： </td>
+                  <td height="23" align="left"> 
+                    <span id="contactdto.dzyj.view">1026367919@qq.com</span>
+                    <span id="contactdto.dzyj.edit" style="display:none"><input name="contactdto.dzyj" value="1026367919@qq.com" type="text" size="20" maxlength="60" /></span>
+                  	</td>
+				  <td height="23" align="right"> </td>
+				  <td></td>
+				  <!--
+				  <TD height="23" align="right"> 小灵通： </td>
+                  <TD height="23" align="left"> <INPUT name="contactdto.xlth" value="" type="text" size="20" maxlength="30">
+                  </TD>
+                  -->
+				</tr>
+				<tr class="tab_5">
+                  <td height="23" align="right"> 家长通讯地址： </td>
+                  <td height="23" align="left"> 
+                  	<span id="contactdto.yl3.view">广州市白云区广园中路云苑直街24号904</span>
+                  	<span id="contactdto.yl3.edit" style="display:none">
+                  		<input name="contactdto.yl3" value="广州市白云区广园中路云苑直街24号904" type="text" size="20" maxlength="60" />
+                  	</span>
+                  </td>
+				  <td height="23" align="right"> 家长通讯地址邮编： </td>
+                  <td height="23" align="left"> 
+                  	<span id="contactdto.yl4.view">510405</span>
+                  	<span id="contactdto.yl4.edit" style="display:none">
+                  		<input name="contactdto.yl4" value="510405" type="text" size="20" maxlength="60" />
+                  	</span>
+                  </td>
+				</tr>
+              </tbody></table>
+             </td>
+          </tr>
+          <tr id="errorCheckTr">
+	  	    <td align="center" colspan="4" height="23">
+	  	     	
+	  	     		<input class="inputbutton" type="submit" value="信息无误" onclick="return confirmNoProblem()" />
+	  	     	
+	  	     	
+	  	     	<input class="inputbutton" type="button" value="信息修改" onclick="return confirmHasProblem()" />
+	  	     </td>
+          </tr>
+          
+	 	  <tr id="familyInfoTr" style="display:none">
+	   		<td>
+	     		<form action="/zsuyy/yanyuan/xj/studentmng.do?method=confirmFamliyAndEduInfo&amp;tabIndex=0" method="post" name="familyInfoForm">
+	     		<input type="hidden" name="studentbaseinfo.id" value="2016082516214250" />
+        		<input type="hidden" name="studentbaseinfo.personId" value="16214250" />
+        		<input type="hidden" name="studentprimeinfo.id" value="2016082516214250" />
+        		<input type="hidden" name="studentotherinfo.id" value="2016082516214250" />
+        		<input type="hidden" name="contactdto.id" value="2016082516214250" />
+	     		<table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" class="tab_2">
+	     			<tbody><tr>
+                  		<td height="23" align="left" class="tab_5">
+                  		<span class="article_master">
+            				此页面各项内容只需在相应地方直接修改或填写后，点击保存即可
+            			</span>
+                  		</td>
+                	</tr>
+	     			<tr>
+                  		<td height="23" align="left" class="tab_2">家庭主要成员(限填写2-5人以内)<font color="red">*</font></td>
+                	</tr>
+	     			<tr>
+           				<td height="25">
+           					<table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" class="tab_2">
+							<tbody><tr class="tab_3" align="center">
+								<td width="10%" height="23">与本人关系</td>
+								<td width="9%" height="23">姓名</td>
+								<td width="7%" height="23">年龄</td>
+								<td width="12%" height="23">政治面貌</td>
+								<td width="18%" height="23">工作单位</td>
+								<td width="9%" height="23">职务</td>
+								<td width="22%" height="23">住址</td>
+								<td width="9%" height="23">联系方式(电话)</td>
+							</tr>
+							 <script language="JavaScript">var famnum=-1;</script>
+							 
+							 <tr class="tab_5" align="center"><input type="hidden" name="familydto[0].id" value="9000000000000000003132862" style="width:100%;heiget:100%;" />
+							 <input type="hidden" name="familydto[0].studentprimeinfoid" value="2016082516214250" style="width:100%;heiget:100%;" />
+								<td height="23"><input type="text" name="familydto[0].gx" value="父子" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[0].xm" value="刘伟贤" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[0].nl" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[0].zzmm" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[0].gzdw" value="无" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[0].drzw" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[0].gzdz" value="" style="width:100%;heiget:100%;" /></td>
+							  	<td height="23"><input type="text" name="familydto[0].lxfs" value="" style="width:100%;heiget:100%;" /></td>
+							  </tr>
+							  <script language="JavaScript">famnum=0</script>
+							 
+							 <tr class="tab_5" align="center"><input type="hidden" name="familydto[1].id" value="9000000000000000003132863" style="width:100%;heiget:100%;" />
+							 <input type="hidden" name="familydto[1].studentprimeinfoid" value="2016082516214250" style="width:100%;heiget:100%;" />
+								<td height="23"><input type="text" name="familydto[1].gx" value="母子" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[1].xm" value="谭雁玲" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[1].nl" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[1].zzmm" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[1].gzdw" value="中国大酒店" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[1].drzw" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[1].gzdz" value="" style="width:100%;heiget:100%;" /></td>
+							  	<td height="23"><input type="text" name="familydto[1].lxfs" value="13535112173" style="width:100%;heiget:100%;" /></td>
+							  </tr>
+							  <script language="JavaScript">famnum=1</script>
+							 
+							 <tr class="tab_5" align="center"><input type="hidden" name="familydto[2].id" value="9000000000000000003132864" style="width:100%;heiget:100%;" />
+							 <input type="hidden" name="familydto[2].studentprimeinfoid" value="2016082516214250" style="width:100%;heiget:100%;" />
+								<td height="23"><input type="text" name="familydto[2].gx" value="兄妹" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[2].xm" value="刘绮颖" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[2].nl" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[2].zzmm" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[2].gzdw" value="广东财经大学" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[2].drzw" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[2].gzdz" value="" style="width:100%;heiget:100%;" /></td>
+							  	<td height="23"><input type="text" name="familydto[2].lxfs" value="18316547036" style="width:100%;heiget:100%;" /></td>
+							  </tr>
+							  <script language="JavaScript">famnum=2</script>
+							 
+							 <tr class="tab_5" align="center"><input type="hidden" name="familydto[3].id" value="" style="width:100%;heiget:100%;" />
+							 <input type="hidden" name="familydto[3].studentprimeinfoid" value="" style="width:100%;heiget:100%;" />
+								<td height="23"><input type="text" name="familydto[3].gx" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[3].xm" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[3].nl" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[3].zzmm" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[3].gzdw" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[3].drzw" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[3].gzdz" value="" style="width:100%;heiget:100%;" /></td>
+							  	<td height="23"><input type="text" name="familydto[3].lxfs" value="" style="width:100%;heiget:100%;" /></td>
+							  </tr>
+							  <script language="JavaScript">famnum=3</script>
+							 
+							 <tr class="tab_5" align="center"><input type="hidden" name="familydto[4].id" value="" style="width:100%;heiget:100%;" />
+							 <input type="hidden" name="familydto[4].studentprimeinfoid" value="" style="width:100%;heiget:100%;" />
+								<td height="23"><input type="text" name="familydto[4].gx" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[4].xm" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[4].nl" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[4].zzmm" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[4].gzdw" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[4].drzw" value="" style="width:100%;heiget:100%;" /></td>
+								<td height="23"><input type="text" name="familydto[4].gzdz" value="" style="width:100%;heiget:100%;" /></td>
+							  	<td height="23"><input type="text" name="familydto[4].lxfs" value="" style="width:100%;heiget:100%;" /></td>
+							  </tr>
+							  <script language="JavaScript">famnum=4</script>
+							 
+							 </tbody></table>
+						</td>
+					</tr>
+		        	<tr>
+                  		<td height="23" align="left" class="tab_2">高中毕业后经历(限填2-6个以内)<font color="red">*</font></td>
+               		</tr>
+               		<tr>
+	           			<td height="25">
+	           				<table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" class="tab_2">
+	           				<tbody><tr class="tab_3" align="center">
+								<td width="11%" height="23">起始年月<br />(yyyy-mm)</td>
+								<td width="11%" height="23">终止年月<br />(yyyy-mm)</td>
+								<td width="32%" height="23">工作单位或学校名称</td>
+								<td width="19%" height="23"> 担任职务</td>
+								<td width="37%" height="23"> 详细地址</td>
+							</tr>
+							<script language="JavaScript">var edunum=-1;</script>
+								
+								  <input type="hidden" name="experiencedto[0].studentprimeinfoid" value="2016082516214250" style="width:100%;heiget:100%;" />
+								  <tr class="tab_5" align="center"><input type="hidden" name="experiencedto[0].id" value="9000000000000000003132859" style="width:100%;heiget:100%;" />
+									<td height="23"><input type="text" name="experiencedto[0].ksny" value="1998.9" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[0].jzny" value="2004.7" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[0].gzdw" value="景泰小学" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[0].drzw" value="班长" style="width:100%;heiget:100%;" /> </td>
+									<td height="23"><input type="text" name="experiencedto[0].dz" value="" style="width:100%;heiget:100%;" /> </td>
+								  </tr>
+								  <script language="JavaScript">edunum=0</script>
+							
+								  <input type="hidden" name="experiencedto[1].studentprimeinfoid" value="2016082516214250" style="width:100%;heiget:100%;" />
+								  <tr class="tab_5" align="center"><input type="hidden" name="experiencedto[1].id" value="9000000000000000003132860" style="width:100%;heiget:100%;" />
+									<td height="23"><input type="text" name="experiencedto[1].ksny" value="2004.9" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[1].jzny" value="2010.7" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[1].gzdw" value="广州市第二中学" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[1].drzw" value="班长" style="width:100%;heiget:100%;" /> </td>
+									<td height="23"><input type="text" name="experiencedto[1].dz" value="" style="width:100%;heiget:100%;" /> </td>
+								  </tr>
+								  <script language="JavaScript">edunum=1</script>
+							
+								  <input type="hidden" name="experiencedto[2].studentprimeinfoid" value="2016082516214250" style="width:100%;heiget:100%;" />
+								  <tr class="tab_5" align="center"><input type="hidden" name="experiencedto[2].id" value="9000000000000000003132861" style="width:100%;heiget:100%;" />
+									<td height="23"><input type="text" name="experiencedto[2].ksny" value="2010.9" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[2].jzny" value="2014.7" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[2].gzdw" value="中山大学" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[2].drzw" value="班长" style="width:100%;heiget:100%;" /> </td>
+									<td height="23"><input type="text" name="experiencedto[2].dz" value="" style="width:100%;heiget:100%;" /> </td>
+								  </tr>
+								  <script language="JavaScript">edunum=2</script>
+							
+								  <input type="hidden" name="experiencedto[3].studentprimeinfoid" value="" style="width:100%;heiget:100%;" />
+								  <tr class="tab_5" align="center"><input type="hidden" name="experiencedto[3].id" value="" style="width:100%;heiget:100%;" />
+									<td height="23"><input type="text" name="experiencedto[3].ksny" value="" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[3].jzny" value="" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[3].gzdw" value="" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[3].drzw" value="" style="width:100%;heiget:100%;" /> </td>
+									<td height="23"><input type="text" name="experiencedto[3].dz" value="" style="width:100%;heiget:100%;" /> </td>
+								  </tr>
+								  <script language="JavaScript">edunum=3</script>
+							
+								  <input type="hidden" name="experiencedto[4].studentprimeinfoid" value="" style="width:100%;heiget:100%;" />
+								  <tr class="tab_5" align="center"><input type="hidden" name="experiencedto[4].id" value="" style="width:100%;heiget:100%;" />
+									<td height="23"><input type="text" name="experiencedto[4].ksny" value="" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[4].jzny" value="" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[4].gzdw" value="" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[4].drzw" value="" style="width:100%;heiget:100%;" /> </td>
+									<td height="23"><input type="text" name="experiencedto[4].dz" value="" style="width:100%;heiget:100%;" /> </td>
+								  </tr>
+								  <script language="JavaScript">edunum=4</script>
+							
+								  <input type="hidden" name="experiencedto[5].studentprimeinfoid" value="" style="width:100%;heiget:100%;" />
+								  <tr class="tab_5" align="center"><input type="hidden" name="experiencedto[5].id" value="" style="width:100%;heiget:100%;" />
+									<td height="23"><input type="text" name="experiencedto[5].ksny" value="" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[5].jzny" value="" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[5].gzdw" value="" style="width:100%;heiget:100%;" /></td>
+									<td height="23"><input type="text" name="experiencedto[5].drzw" value="" style="width:100%;heiget:100%;" /> </td>
+									<td height="23"><input type="text" name="experiencedto[5].dz" value="" style="width:100%;heiget:100%;" /> </td>
+								  </tr>
+								  <script language="JavaScript">edunum=5</script>
+							
+	           				</tbody></table>
+	           			</td>
+           			  </tr>
+           			  <tr>
+           			  	<td height="25">
+           			  		<table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" class="tab_2">
+           			  		<tbody><tr class="tab_5">
+                  				<td height="23" align="right" width="15%">特长(150字以内)：</td>
+                  				<td height="23" colspan="3" align="left">
+                   					<span id="studentprimeinfo.tc.view" style="display: none;"></span>
+				  					<span id="studentprimeinfo.tc.edit">
+				  						<textarea style="width:100%" maxlength="150" cols="" name="studentprimeinfo.tc" rows="3"></textarea>
+				  					</span>
+                  				</td>
+                			</tr>
+                			<tr class="tab_5">
+                  				<td height="23" align="right"> 入学前科研情况(150字以内)： </td>
+                  				<td height="23" colspan="3" align="left"> 
+                  					<span id="studentotherinfo.kyqk.view"></span>
+				  					<span id="studentotherinfo.kyqk.edit" style="display:none"><textarea style="width:100%" name="studentotherinfo.kyqk" cols="50" rows="3"></textarea></span>
+                  			 </td>
+                			</tr>
+                			</tbody></table>
+           			  	</td>
+           			  </tr>
+           			  <tr>
+           			  	<td align="center">
+	  	     				<input class="inputbutton" type="submit" value="保 存" onclick="return checkFamAndEdu() &amp;&amp; clearUnEditField();" />
+	  	     				<input class="inputbutton" type="reset" value="重 置" />
+	  	     			</td>
+           			  </tr>
+		        	</tbody></table>
+		        	</form>
+				</td>
+          	</tr>
+	</tbody></table>
+	</td>
+        </tr></tbody></table>
+      
+  
+
+
+
+
+</body></html>
