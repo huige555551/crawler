@@ -36,6 +36,7 @@ def toJson(str):
 s = requests.Session()
 # 将cookie保存到cookiejar文件中,方便以后使用
 s.cookies = LWPCookieJar('cookiejar')
+# s.get('https://cas.sysu.edu.cn/cas/login?service=http://ecampus.sysu.edu.cn/zsuyy/login.jsp').text 效果等同于urlopen(xxx).read(),返回上面url里的内容
 r = s.get("https://cas.sysu.edu.cn/cas/login?service=http://ecampus.sysu.edu.cn/zsuyy/login.jsp")
 soup = toJson(r.text)
 payload ={'username':'*******','password':'*******','lt':soup["lt"],'execution':soup['execution'],'_eventId':'submit','submit':'%E7%99%BB%E5%BD%95'}
