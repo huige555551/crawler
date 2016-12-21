@@ -1,0 +1,6 @@
+#LWP-Cookies-2.0
+Set-Cookie3: JSESSIONID=F55B112A19731DCF62149D94651F35C4; path="/cas/"; domain="cas.sysu.edu.cn"; path_spec; discard; HttpOnly=None; version=0
+Set-Cookie3: TGC="eyJhbGciOiJIUzUxMiJ9.ZXlKaGJHY2lPaUprYVhJaUxDSmxibU1pT2lKQk1USTRRMEpETFVoVE1qVTJJbjAuLkZDeXFUVGRKV1hBOTZRbHdvOEVtRHcuTl9RYUJNYlBodlc0YzNTN0pOVUpHVWFjQnlEVWFfQUNrR3djcWtpX1VaUTJEaVBPVExScGtfTC1SX0xxRmVyRHc2cW9mTmZzZlVBSmRqRTg4ZV9yRzJNYnNSemlJNGliQ0JPR09zOVh5R3dKOXlDUnN4dmNBWEdvSTFOcVNWeVJFQkdwbGFsTjM1bGJydXI1YmptdTJpZXVXRFB3Yk1FcnV0VmRHZWdaR2g4LkRkbnNkeFV2aFhyX29SZmtnTjBTWFE.d6jt9CrRejCBs7Y0tMbpmSWBUKNluaXWBOYslpg2zJYOmSrwgG3zc8-98fQCK0_eEuV6ZfIrSbZMIHDC9aqb5w"; path="/cas/"; domain="cas.sysu.edu.cn"; path_spec; discard; HttpOnly=None; version=0
+Set-Cookie3: SECURE_AUTH_ROOT_COOKIE=1orCV6uZmT4gvVW6YuGWSQQ30hEho5rs7mhmPNrtlGk9jx5nj8gL; path="/"; domain="ecampus.sysu.edu.cn"; path_spec; discard; HttpOnly=None; version=0
+Set-Cookie3: JSESSIONID="3f7HIa2ZmUtVuCHOYZOVSQQ2pRUi0-2cnHIXPt7q_2lSjx5lj6QP_oI_5gUkMg**"; path="/zsuyy"; domain="ecampus.sysu.edu.cn"; path_spec; discard; HttpOnly=None; version=0
+Set-Cookie3: SECURITY_AUTHENTICATION_COOKIE=1orCV6uZmT4gvVW6YuGWSQQ30hEho5rs7mhmPNrtlGk9jx5nj8gL; path="/zsuyy"; domain="ecampus.sysu.edu.cn"; path_spec; discard; HttpOnly=None; version=0

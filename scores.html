@@ -1,0 +1,32 @@
+<html>
+	<head>
+	<title>ÖÐÉ½´óÑ§ - ÑÐ¾¿Éú½ÌÓý¹ÜÀíÏµÍ³ - µÇÂ¼</title>
+	<META http-equiv=Content-Type content="text/html; charset=gb2312">
+	<script type="text/javascript" src="thirdparty/jquery/jquery.min.js"></script>
+	</head>
+<body>
+	<span style="color: red">ÕýÔÚÍË³öµÇÂ¼£¬ÇëÉÔºò...</span>
+	<iframe id="logoutFrame" name="logoutFrame" style="display: none" src="https://uems.sysu.edu.cn/cas/logout" onload="forwardMainPage()"></iframe>
+	<form action="" name="f" method="post"></form>
+	<script type="text/javascript">
+	function forwardMainPage() {
+		document.f.target = "_top";
+		document.f.action = "/" + getContextPath();
+		document.f.submit();
+	}
+	function getContextPath(){
+	   var url = location.href;
+	   url = url.substring(url.indexOf('://') + 3);
+	   if(url.indexOf('/') < 0)
+	   		return "./";
+	   url = url.substring(url.indexOf('/') + 1);
+	   var pos;
+	   if(url.indexOf('/') >= 0) 
+			pos = url.indexOf('/');
+	   else pos = url.length;
+	   		url = url.substring(0, pos);
+	   return url;
+	}
+	</script>
+</body>
+</html>
