@@ -9,9 +9,9 @@
 
 用于进行html内容解析的python库
 
-##下部改进
+##PhantomJs和Selenium
 
-使用PhantomJS来模拟浏览器的js渲染，使用Selenium模拟交互。
+sysuV2.py使用PhantomJS来模拟浏览器的js渲染，使用Selenium模拟交互,需要加入chrome作为驱动，傻瓜式的操作。
 
 ##抓取效果
 
