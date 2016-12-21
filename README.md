@@ -15,4 +15,8 @@
 
 ##抓取效果
 
+![课程信息](lessons.png)
+![成绩](scores.png)
+![学生信息](stdinformation.png)
+
 
